@@ -1,3 +1,7 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
 .App {
   text-align: center;
 }
@@ -35,4 +39,17 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+/* Mengatur ukuran papan permainan */
+.board {
+  width: 300px; /* Sesuaikan ukuran papan permainan sesuai kebutuhan */
+  height: 300px; /* Sesuaikan ukuran papan permainan sesuai kebutuhan */
+  margin: 0 auto; /* Mengatur papan permainan di tengah halaman */
+}
+
+/* Mengatur button reset */
+.reset-button {
+  display: block;
+  margin: 0 auto; /* Mengatur button reset di tengah halaman */
 }

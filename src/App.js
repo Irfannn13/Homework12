@@ -1,18 +1,52 @@
-
 import * as React from 'react';
 
 function Board() {
-  const squares = Array(9).fill(null);
-  function selectSquare(square) {
+  const [squares, setSquares] = React.useState(Array(9).fill(null));
+  const [currentPlayer, setCurrentPlayer] = React.useState('X');
 
+  // Menambahkan state untuk nextValue, winner, dan status
+  const [nextValue, setNextValue] = React.useState('X');
+  const [winner, setWinner] = React.useState(null);
+  const [status, setStatus] = React.useState(calculateStatus(winner, squares, nextValue));
+
+  function selectSquare(square) {
+    // Jika kotak sudah diisi atau permainan sudah selesai, keluar dari fungsi
+    if (squares[square] || winner) {
+      return;
+    }
+
+    // Buat salinan baru dari array squares
+    const newSquares = [...squares];
+    newSquares[square] = currentPlayer;
+
+    // Periksa apakah ada pemenang setelah mengisi kotak
+    const newWinner = calculateWinner(newSquares);
+
+    setSquares(newSquares);
+    setCurrentPlayer(currentPlayer === 'X' ? 'O' : 'X');
+
+    // Update nextValue, winner, dan status
+    const newNextValue = calculateNextValue(newSquares);
+    setNextValue(newNextValue);
+    setWinner(newWinner);
+    const newStatus = calculateStatus(newWinner, newSquares, newNextValue);
+    setStatus(newStatus);
   }
 
   function restart() {
+    // Mengatur ulang papan permainan menjadi kosong
+    setSquares(Array(9).fill(null));
+    // Mengatur giliran pemain pertama
+    setCurrentPlayer('X');
+    // Mengatur ulang nextValue, winner, dan status
+    setNextValue('X');
+    setWinner(null);
+    setStatus(calculateStatus(null, Array(9).fill(null), 'X'));
   }
 
   function renderSquare(i) {
     return (
-      <button className="square" onClick={() => selectSquare(i)}>
+      <button p={4} m={1} size="lg" fontSize="2xl" className="square" onClick={() => selectSquare(i)}>
         {squares[i]}
       </button>
     );
@@ -20,28 +54,27 @@ function Board() {
 
   return (
     <div>
-      <div >STATUS</div>
-      <div >
+      <div>Status: {status}</div>
+      <div>
         {renderSquare(0)}
         {renderSquare(1)}
         {renderSquare(2)}
       </div>
-      <div >
+      <div>
         {renderSquare(3)}
         {renderSquare(4)}
         {renderSquare(5)}
       </div>
-      <div >
+      <div>
         {renderSquare(6)}
         {renderSquare(7)}
         {renderSquare(8)}
       </div>
-      <button onClick={restart}>
-        restart
-      </button>
+      <button onClick={restart}>Restart</button>
     </div>
   );
 }
+
 
 function Game() {
   return (

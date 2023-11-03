@@ -1,0 +1,21 @@
+/* Ganti font dan properti teks */
+body {
+  font-family: 'Your Preferred Font', sans-serif;
+  font-size: 16px;
+  background-color: #f0f0f0; /* Ganti latar belakang sesuai kebutuhan */
+  color: #333; /* Ganti warna teks sesuai kebutuhan */
+}
+
+/* Ganti gaya code atau elemen pre jika diperlukan */
+code {
+  font-family: 'Your Code Font', monospace;
+  background-color: #f8f8f8; /* Ganti latar belakang code jika perlu */
+  border: 1px solid #ccc; /* Ganti gaya border jika perlu */
+  padding: 4px;
+}
+
+.board {
+  width: 300px; /* Sesuaikan ukuran papan permainan sesuai kebutuhan */
+  height: 300px; /* Sesuaikan ukuran papan permainan sesuai kebutuhan */
+  margin: 0 auto; /* Mengatur papan permainan di tengah halaman */
+}
